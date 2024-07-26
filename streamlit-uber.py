@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 # Muat model dan scaler yang sudah disimpan
-model = joblib.load('random_forest_model.sav')
+model = joblib.load('random_forest_model_compressed2.sav')
 scaler = joblib.load('scaler.sav')
 
 # Fungsi untuk melakukan prediksi
@@ -15,7 +15,7 @@ def predict(features):
 
 # Streamlit UI
 st.title('Prediksi Tarif Uber')
-st.write('Masukkan fitur untuk prediksi tarif uber')
+st.write('Masukkan fitur untuk prediksi tarif Uber')
 
 # Input fitur dari pengguna
 distance = st.number_input('Distance')
@@ -28,6 +28,6 @@ dayofweek = st.number_input('Day of Week', min_value=0, max_value=6, step=1)
 
 # Melakukan prediksi saat tombol ditekan
 if st.button('Predict'):
-    features = [passenger_count, hour, day, month, year, dayofweek, distance]
+    features = [distance, passenger_count, day, month, year, hour, dayofweek]
     prediction = predict(features)
     st.write(f'Tarif Prediksi: ${prediction[0]:.2f}')
